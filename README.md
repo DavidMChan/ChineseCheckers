@@ -14,6 +14,6 @@ To compile:
 
 To run:
 
-	./bin/Agent [command line flags, use -h for options]
+	./bin/Agent [command line flags, use --help for options]
 
 
