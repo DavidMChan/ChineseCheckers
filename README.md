@@ -3,7 +3,13 @@ AI for chinese checkers in professor Nathan Sturtevant's AI for Traditional Game
 
 To compile:
 
-run
-  mkdir build & cd build
-  cmake ../src/
-  make
+	mkdir build
+
+	cd build
+
+	cmake ../src/
+
+	make
+
+
+
