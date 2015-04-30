@@ -12,4 +12,8 @@ To compile:
 	make
 
 
+To run:
+
+	./bin/Agent [command line flags, use -h for options]
+
 
