@@ -32,7 +32,7 @@ uint16_t AB::AlphaBetaRoot(CCBoard &state, TDEval &eval, float timelimit, int pl
 												   //we want to act like a min node or if we're searching for P1 we wamt
 												   //to act like a max node
 		
-		uint16_t best_move = 0; //We're going to use this vector to keep track of the moves that we might want to make, 
+		uint16_t best_move = moves[0]; //We're going to use this vector to keep track of the moves that we might want to make, 
 									  //and then deal with choosing a random best move from the table
 
 		for (uint16_t m : moves){
@@ -55,10 +55,8 @@ uint16_t AB::AlphaBetaRoot(CCBoard &state, TDEval &eval, float timelimit, int pl
 		if (!time){
 			saved_best = best_move;
 			sbs = best_score;
-			if (best_score > 100)
-				break;
-
-			
+			if (best_score > 99)
+				break;			
 			depth ++; //If we're not done - we increase the depth of the search and begin again
 		}
 	}
@@ -109,7 +107,7 @@ double AB::NegaScout(CCBoard &state, TDEval &eval,  short depth, double alpha, d
 	if (state.gameOver()){
 		return (-10000.0 * 1.0/static_cast<double>(depth));
 	}
-    if (depth <= 0)
+    if (depth <= 0 || depth > 46)
     {   
     	//double score = AB::Quiesence(state, eval, 1, player, time);
         double score = eval.eval(state, state.getPlayer());
@@ -128,11 +126,11 @@ double AB::NegaScout(CCBoard &state, TDEval &eval,  short depth, double alpha, d
 	
 	if (player)
 		std::sort(AB::vectorCache.at(depth).begin(),
-				std::min(AB::vectorCache.at(depth).begin() + 50, AB::vectorCache.at(depth).end()),
+				std::min(AB::vectorCache.at(depth).begin(), AB::vectorCache.at(depth).end()),
 				[player](uint16_t i, uint16_t j){return AB::HistoryHeuristicPlayer1[i] > AB::HistoryHeuristicPlayer1[j];});
 	else
 		std::sort(AB::vectorCache.at(depth).begin(),
-				std::min(AB::vectorCache.at(depth).begin() + 50, AB::vectorCache.at(depth).end()),
+				std::min(AB::vectorCache.at(depth).begin(), AB::vectorCache.at(depth).end()),
 				[player](uint16_t i, uint16_t j){return AB::HistoryHeuristicPlayer2[i] > AB::HistoryHeuristicPlayer2[j];});
 
     for (auto m : AB::vectorCache.at(depth)){

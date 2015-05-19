@@ -11,6 +11,8 @@ set(cc_sources
 	EndgameDatabase.cpp
 	SixCCS.cpp
 	uint128_t.cpp
+	UCB.cpp
+	MCTS.cpp
 	)
 
 set_source_files_properties(${cc_sources} PROPERTIES COMPILE_FLAGS " -O3 -g -Wno-sign-conversion -Wno-reorder -Wno-conversion -Wno-old-style-cast -Wno-suggest-attribute=pure -Wno-unused-parameter -Wno-zero-as-null-pointer-constant")

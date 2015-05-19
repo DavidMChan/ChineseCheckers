@@ -64,7 +64,7 @@ class CCBoard{
 		bool applyMove(uint16_t m, bool undo = false); //Apply a move in uint16_t form
 		bool undoMove(uint16_t m); //Undo a move in uint16_t form
 
-		mutable std::vector<uint16_t> move_cache;
+		mutable std::vector<uint16_t> move_cache; //A vector that is pre-allocated and can hold moves
 
 
 		/*

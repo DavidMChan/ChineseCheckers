@@ -17,7 +17,7 @@ ChineseCheckersState::ChineseCheckersState() {
 
 Move ChineseCheckersState::getRandomMove() const {
 	std::set<Move> moves;
-	getMoves(moves);
+	getMoves(moves);`
 
 	size_t choice = rand() % moves.size();
 	
@@ -25,7 +25,6 @@ Move ChineseCheckersState::getRandomMove() const {
 	std::advance(m, choice);
 	return *m;
 }
-
 
 void ChineseCheckersState::getMoves(std::set<Move> &moves) const {
 	moves.clear();

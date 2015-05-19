@@ -5,17 +5,30 @@
  * @return Move - the move that should be played next on the local state
  */
 uint16_t Agent::nextMove(){
-
   if (FLAGS_ob){
     uint16_t m;
     if (my_book->getMove(m)){
       return m;
-    } else {
-      return AB::AlphaBetaRoot(state, t_eval, static_cast<float>(FLAGS_time_limit),  my_player == 1 ? 0 : 1 );
     }
-  } else {
-    return AB::AlphaBetaRoot(state,t_eval, static_cast<float>(FLAGS_time_limit),  my_player == 1 ? 0 : 1 );
   }
+    
+  if (FLAGS_UCB){
+    UCBPlayer play(state);
+    if (FLAGS_v)
+      std::cerr << "UCBMethod: " << FLAGS_UCBMethod << std::endl;
+    if (FLAGS_UCBMethod == "random-depth" || FLAGS_UCBMethod == "\"random-depth\""){
+      return play.GetMove(FLAGS_time_limit, t_eval, FLAGS_UCBDepth);
+    } else {
+      return play.GetMove(FLAGS_time_limit);
+    }
+  } else if (FLAGS_MCTS) {
+    CCBoard state_copy = state;
+    return MCTS::getMove(state_copy, FLAGS_time_limit,t_eval, FLAGS_MCTSThreads);
+  } else {
+    return AB::AlphaBetaRoot(state,t_eval, static_cast<float>(FLAGS_time_limit),  my_player == 1 ? 0 : 1 );    
+  }
+
+  
 }
 
 /**

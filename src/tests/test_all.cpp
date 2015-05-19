@@ -15,7 +15,17 @@ DEFINE_int32(depth, 3, "The depth to explore the tree in the test");
 DEFINE_int32(eval, 0, "The base eval method to use");
 DEFINE_bool(t, true, "Use transposition tables");
 DEFINE_bool(ob, false, "Use opening book");
+DEFINE_bool(UCB, false, "Use the UCB player");
+DEFINE_string(UCBMethod, "random-full", "The method that should be used - \"random-full\", \"random-depth\"");
+DEFINE_int32(UCBDepth, 30, "The depth to which the UCB player should play");
 DEFINE_string(weights, "testweights.regweights", "The weights to use for the regression");
+DEFINE_int32(MCTSThreads, 1, "The number of threads an MCTS player should use");
+DEFINE_bool(MCTS, true, "Use the MCTS player");
+
+DEFINE_double(MCTSExplore, 2.2, "The coefficient in MCTS-UCT implementation");
+DEFINE_int32(MCTSEpsilon, 4, "The epsilon value for random playouts - set to 25% by default");
+DEFINE_int32(MCTSVisitLimit, 3, "The number of visits before a node is expanded");
+DEFINE_int32(MCTSPlayoutDepth, 10, "The depth of the playouts during MCTS");
 
 int main(int argc, char **argv) {
   gflags::SetVersionString("0.1 - 04/15/2015");

@@ -14,6 +14,17 @@
 
 double TDEval::eval(CCBoard &s, unsigned whichPlayer)
 {
+
+	int winner = s.winner();
+
+	if (winner != -1){
+		if (winner == whichPlayer){
+			return 1000;
+		} else {
+			return -1000;
+		}
+	}
+
 	GetFeatures(s, features, whichPlayer);
 	double result = r.test(features);
 	return result;
@@ -169,7 +180,6 @@ void TDRegression::Train(const std::vector<uint16_t> &trace)
 			r.train(features, loseReward);	
 			loseReward = (1-lambda) * r.test(features) + lambda * loseReward;
 		}
-
 	}
 }
 

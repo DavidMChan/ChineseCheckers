@@ -17,12 +17,19 @@
 #include "CCAgent/TDRegression.h"
 #include "CCAgent/AlphaBeta.h"
 #include "CCAgent/OpeningBook.h"
+#include "CCAgent/UCB.h"
+#include "CCAgent/MCTS.h"
 #include "gflags/gflags.h"
 
 DECLARE_bool(v);
 DECLARE_double(time_limit);
 DECLARE_bool(ob);
 DECLARE_string(weights);
+DECLARE_string(UCBMethod);
+DECLARE_bool(UCB);
+DECLARE_int32(UCBDepth);
+DECLARE_bool(MCTS);
+DECLARE_int32(MCTSThreads);
 
 class Agent {
 public:
